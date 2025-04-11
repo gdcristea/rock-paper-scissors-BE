@@ -8,16 +8,19 @@ const port = process.env.PORT || 3000;
  */
 app.use(express.json());
 
+// 🔍 CORS based on the environment
+const allowedOrigin =
+  process.env.NODE_ENV === "production"
+    ? "https://gdcristea.github.io"
+    : "http://localhost:4200";
+
+
 /**
  * Need this cors middleware as the frontend and backend run on different domains
- * Frontend - GitHub Pages
- * Backend - Render
- * This middleware adds 'Access-Control-Allow-Origin: https://gdcristea.github.io'
- * in the responses' header
  */
 app.use(
   cors({
-    origin: "https://gdcristea.github.io",
+    origin: allowedOrigin,
   })
 );
 
