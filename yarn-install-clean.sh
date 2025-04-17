@@ -1,11 +1,8 @@
 #!/bin/bash
 
 # Disable proxies
-unset HTTP_PROXY
-unset HTTPS_PROXY
-unset http_proxy
-unset https_proxy
+unset HTTP_PROXY HTTPS_PROXY http_proxy https_proxy
 
-#Run yarn install on a clean environment
-yarn install
+#  Forward all arguments to yarn
+yarn "$@"
 

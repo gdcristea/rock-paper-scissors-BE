@@ -4,16 +4,19 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:dev": "NODE_ENV=development nodemon index.js" ,
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "NODE_ENV=development nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "yarn:add": "./yarn-install-clean.sh add --"
   },
   "keywords": [],
   "author": "Daniel Cristea",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
