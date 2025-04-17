@@ -4,7 +4,14 @@ const User = require('../models/User');
 
 const SECRET_KEY = 'your-secret-key' // put in env in production
 
-// Sign up logic
+/**
+ * @route   POST /api/auth/signup
+ * @desc    Register a new user
+ * @access  Public
+ * @body    { username: string, password: string }
+ * @returns 201 Created on success
+ *          400 Bad Request if user already exists
+ */
 exports.signup = async (req, res) => {
   const {username, password} = req.body;
 
@@ -20,7 +27,14 @@ exports.signup = async (req, res) => {
   return res.status(201).json({message: 'User created'}); //201 Created
 }
 
-// Login logic
+/**
+ * @route   POST /api/auth/login
+ * @desc    Log in user and return JWT token
+ * @access  Public
+ * @body    { username: string, password: string }
+ * @returns 200 OK with token on success
+ *          401 Unauthorized if invalid credentials
+ */
 exports.login = async (req, res) => {
   const {username, password} = req.body;
 
@@ -36,7 +50,7 @@ exports.login = async (req, res) => {
   }
 
   /**
-   * Generate a JWT - JSON Web Token 
+   * Generate a JWT - JSON Web Token
    * The token is sent to the client and used it for future requests like accessing the profile, and scoreboard
    * jwt.sign(payload, secret, options)
    * 'payload' contains user info - use later to decode who made a request
