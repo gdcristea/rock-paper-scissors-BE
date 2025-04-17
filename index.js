@@ -1,5 +1,4 @@
 const express = require("express");
-const winnerRouter = require('./routes/winner');
 const corsMiddleware = require('./middlewares/corsMiddleware');
 
 const app = express();
@@ -13,7 +12,11 @@ app.use(express.json());
 app.use(corsMiddleware);
 
 // Routes
-app.use("/api/winner", winnerRouter);
+const winnerRoute = require('./routes/winner');
+app.use("/api/winner", winnerRoute); // url: /api/winner
+
+const authRoutes = require('./routes/auth');
+app.use("/api/auth", authRoutes); //url: /api/auth/signup || /api/auth/signup
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

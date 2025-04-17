@@ -1,4 +1,4 @@
-const determineWinner = (req, res) => {
+exports.determineWinner = (req, res) => {
   const { userOption } = req.body;
   const options = ["rock", "paper", "scissors"];
   const computerOption = options[Math.floor(Math.random() * options.length)];
@@ -17,12 +17,10 @@ const determineWinner = (req, res) => {
   }
 
   /**
-   * res,json(...):
+   * res.json(...):
    * 1. JSON.stringify()
    * 2. res.setHeader('Content-Type', 'application/json)
    * 3. res.send(...)
    */
   res.json({ computerOption, result });
 }
-
-module.exports = determineWinner;
