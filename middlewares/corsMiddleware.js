@@ -3,8 +3,8 @@ const cors = require("cors");
 // 🔍 CORS based on the environment
 const allowedOrigin =
   process.env.NODE_ENV === "production"
-    ? "https://gdcristea.github.io"
-    : "http://localhost:4200";
+    ? process.env.CORS_PRODUCTION
+    : process.env.CORS_DEVELOPMENT;
 
     const corsMiddleware = cors({origin: allowedOrigin});
 
