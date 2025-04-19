@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const corsMiddleware = require('./middlewares/corsMiddleware');
 
@@ -19,5 +20,5 @@ const authRoutes = require('./routes/auth');
 app.use("/api/auth", authRoutes); //url: /api/auth/signup || /api/auth/signup
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
