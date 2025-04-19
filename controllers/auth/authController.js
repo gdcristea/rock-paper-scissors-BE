@@ -15,14 +15,15 @@ const SECRET_KEY = process.env.JWT_SECRET;
 exports.signup = async (req, res) => {
   const { username, password } = req.body;
 
-  if (User.findUserByName(username)) {
+  const existingUser = await User.findUserByName(username);
+  if (existingUser) {
     return res.status(400).json({ message: "User already exists" }); //400 Bad Request
   }
 
   // I use 'await' here because it's CPU-intensive - hashing is slow and this line returns a Promise and the next line might execute before the hash is done
   // 'await' works only with Promises -> I write 'await' and I am telling JavaScript -> 'Hey, pause this function here until bcrypt.hash() resolves or rejects, then give me the result.
   const hashedPassword = await bcrypt.hash(password, 10);
-  User.createUser({ username, password: hashedPassword });
+  await User.createUser({ username, password: hashedPassword });
 
   return res.status(201).json({ message: "User created" }); //201 Created
 };
@@ -38,7 +39,7 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   const { username, password } = req.body;
 
-  const existingUser = User.findUserByName(username);
+  const existingUser = await User.findUserByName(username);
   if (!existingUser) {
     return res.status(401).json({ message: "Invalid credentials" }); //401 Unauthorized
   }
