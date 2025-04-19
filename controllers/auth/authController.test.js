@@ -1,7 +1,7 @@
 const request = require("supertest");
 const express = require("express");
 const bodyParser = require("express").json;
-const authRoutes = require("../routes/auth");
+const authRoutes = require("../../routes/auth");
 
 const app = express();
 app.use(bodyParser());
